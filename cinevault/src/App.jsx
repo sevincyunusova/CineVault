@@ -12,6 +12,11 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("")
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
+  const [selectedGenre, setSelectedGenre] = useState("all")
+
+  const handleGenreChange = (genreId) => {
+    setSelectedGenre(genreId)
+  }
 
   useEffect(() => {
     getPopularMovies()
@@ -58,6 +63,8 @@ function App() {
         <Movies
           movies={movies}
           searchQuery={searchQuery}
+          selectedGenre={selectedGenre}
+          onGenreChange={handleGenreChange}
         />
       )}
     </>

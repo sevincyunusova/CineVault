@@ -1,10 +1,28 @@
+import { useState } from "react"
 import "./Hero.css"
 
-function Hero() {
+function Hero({ onSearch }) {
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    const query = searchQuery.trim()
+
+    if (!query) {
+      return
+    }
+
+    onSearch(query)
+  }
+
   return (
-    <section className="hero">
+    <section className="hero" id="home">
       <div className="hero-content">
-        <span className="hero-label">WELCOME TO CINEVAULT</span>
+
+        <span className="hero-label">
+          WELCOME TO CINEVAULT
+        </span>
 
         <h1>
           Discover Your Next
@@ -16,14 +34,24 @@ function Hero() {
           and find your next great watch.
         </p>
 
-        <div className="hero-search">
+        <form
+          className="hero-search"
+          onSubmit={handleSubmit}
+        >
           <input
             type="text"
             placeholder="Search for a movie..."
+            value={searchQuery}
+            onChange={(event) =>
+              setSearchQuery(event.target.value)
+            }
           />
 
-          <button>Search</button>
-        </div>
+          <button type="submit">
+            Search
+          </button>
+        </form>
+
       </div>
     </section>
   )

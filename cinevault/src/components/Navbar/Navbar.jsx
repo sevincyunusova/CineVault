@@ -1,15 +1,41 @@
+import { FaHeart, FaUser } from "react-icons/fa"
 import "./Navbar.css"
+
 function Navbar() {
   return (
-    <nav>
-      <h2>CineVault</h2>
+    <header className="navbar">
+      <div className="navbar-container">
 
-      <div>
-        <a href="/">Home</a>
-        <a href="/">Movies</a>
-        <a href="/">Genres</a>
+        <a href="#home" className="navbar-logo">
+          Cine<span>Vault</span>
+        </a>
+
+        <nav className="navbar-links">
+          <a href="#home">Home</a>
+          <a href="#movies">Movies</a>
+          <a href="#favorites">Favorites</a>
+        </nav>
+
+        <div className="navbar-actions">
+          <button
+            type="button"
+            className="navbar-icon-button"
+            aria-label="Favorites"
+          >
+            <FaHeart />
+          </button>
+
+          <button
+            type="button"
+            className="navbar-icon-button"
+            aria-label="Profile"
+          >
+            <FaUser />
+          </button>
+        </div>
+
       </div>
-    </nav>
+    </header>
   )
 }
 

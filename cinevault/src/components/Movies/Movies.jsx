@@ -3,7 +3,7 @@ import MovieCard from "../MovieCard/MovieCard"
 
 function Movies({ movies }) {
   return (
-    <section className="movies">
+    <section className="movies" id="movies">
       <div className="movies-header">
         <div>
           <span className="section-label">EXPLORE</span>

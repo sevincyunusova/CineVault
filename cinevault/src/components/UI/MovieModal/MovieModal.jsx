@@ -1,7 +1,16 @@
-import { FaStar, FaTimes } from "react-icons/fa"
+import {
+  FaStar,
+  FaTimes,
+  FaHeart,
+} from "react-icons/fa"
+
 import "./MovieModal.css"
 
-function MovieModal({ movie, onClose }) {
+function MovieModal({
+  movie,
+  onClose,
+  onAddFavorite,
+}) {
   if (!movie) {
     return null
   }
@@ -14,16 +23,25 @@ function MovieModal({ movie, onClose }) {
     ? movie.release_date.slice(0, 4)
     : "N/A"
 
+  const rating = movie.vote_average
+    ? movie.vote_average.toFixed(1)
+    : "N/A"
+
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div
+      className="modal-overlay"
+      onClick={onClose}
+    >
       <div
         className="movie-modal"
-        onClick={(event) => event.stopPropagation()}
+        onClick={(event) =>
+          event.stopPropagation()
+        }
       >
         <button
           className="modal-close"
           onClick={onClose}
-          aria-label="Close"
+          aria-label="Close modal"
         >
           <FaTimes />
         </button>
@@ -45,13 +63,24 @@ function MovieModal({ movie, onClose }) {
 
             <span className="modal-rating">
               <FaStar />
-              {movie.vote_average.toFixed(1)}
+              {rating}
             </span>
           </div>
 
           <p className="modal-overview">
-            {movie.overview || "No description available."}
+            {movie.overview ||
+              "No description available."}
           </p>
+
+          <button
+            className="add-favorite-button"
+            onClick={() =>
+              onAddFavorite(movie)
+            }
+          >
+            <FaHeart />
+            Add to Favorites
+          </button>
         </div>
       </div>
     </div>

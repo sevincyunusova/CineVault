@@ -1,4 +1,5 @@
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY
+
 const BASE_URL = "https://api.themoviedb.org/3"
 
 export const getPopularMovies = async () => {
@@ -7,12 +8,14 @@ export const getPopularMovies = async () => {
   )
 
   if (!response.ok) {
-    throw new Error("Failed to fetch popular movies")
+    throw new Error(`Popular movies error: ${response.status}`)
   }
 
   const data = await response.json()
 
-  return data.results
+  console.log("Popular movies API response:", data)
+
+  return data
 }
 
 export const searchMovies = async (query) => {
@@ -21,12 +24,14 @@ export const searchMovies = async (query) => {
   )
 
   if (!response.ok) {
-    throw new Error("Failed to search movies")
+    throw new Error(`Search movies error: ${response.status}`)
   }
 
   const data = await response.json()
 
-  return data.results
+  console.log("Search API response:", data)
+
+  return data
 }
 
 export const getMoviesByGenre = async (genreId) => {
@@ -35,10 +40,12 @@ export const getMoviesByGenre = async (genreId) => {
   )
 
   if (!response.ok) {
-    throw new Error("Failed to fetch movies by genre")
+    throw new Error(`Genre movies error: ${response.status}`)
   }
 
   const data = await response.json()
 
-  return data.results
+  console.log("Genre API response:", data)
+
+  return data
 }

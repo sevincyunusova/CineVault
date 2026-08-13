@@ -1,0 +1,55 @@
+.favorites {
+  padding: 60px 40px;
+  background-color: #0f0f0f;
+}
+
+.favorites-header {
+  margin-bottom: 30px;
+}
+
+.favorites-header h2 {
+  margin-top: 8px;
+  color: #ffffff;
+  font-size: 32px;
+}
+
+.favorites-empty {
+  color: #888888;
+  font-size: 15px;
+}
+
+.favorite-card-wrapper {
+  position: relative;
+}
+
+.remove-favorite {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+
+  border: 1px solid #333333;
+  border-radius: 6px;
+
+  background: transparent;
+  color: #aaaaaa;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.remove-favorite:hover {
+  background: #e50914;
+  border-color: #e50914;
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .favorites {
+    padding: 40px 20px;
+  }
+
+  .favorites-header h2 {
+    font-size: 26px;
+  }
+}

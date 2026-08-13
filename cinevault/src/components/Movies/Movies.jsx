@@ -1,6 +1,7 @@
 import "./Movies.css"
+import MovieCard from "../MovieCard/MovieCard"
 
-function Movies() {
+function Movies({ movies }) {
   return (
     <section className="movies">
       <div className="movies-header">
@@ -15,25 +16,12 @@ function Movies() {
       </div>
 
       <div className="movies-grid">
-        <div className="movie-placeholder">
-          <span>Movie</span>
-        </div>
-
-        <div className="movie-placeholder">
-          <span>Movie</span>
-        </div>
-
-        <div className="movie-placeholder">
-          <span>Movie</span>
-        </div>
-
-        <div className="movie-placeholder">
-          <span>Movie</span>
-        </div>
-
-        <div className="movie-placeholder">
-          <span>Movie</span>
-        </div>
+        {movies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+          />
+        ))}
       </div>
     </section>
   )

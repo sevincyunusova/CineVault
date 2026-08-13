@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Navbar from "./components/Navbar/Navbar"
 import Hero from "./components/Hero/Hero"
 import Movies from "./components/Movies/Movies"
+import MovieModal from "./components/UI/MovieModal/MovieModal"
 import {
   getPopularMovies,
   searchMovies,
@@ -12,8 +13,10 @@ function App() {
   const [movies, setMovies] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedGenre, setSelectedGenre] = useState("all")
+  const [selectedMovie, setSelectedMovie] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
+
 
   useEffect(() => {
     getPopularMovies()
@@ -90,8 +93,13 @@ function App() {
           searchQuery={searchQuery}
           selectedGenre={selectedGenre}
           onGenreChange={handleGenreChange}
+          onMovieClick={setSelectedMovie}
         />
       )}
+      <MovieModal
+        movie={selectedMovie}
+        onClose={() => setSelectedMovie(null)}
+      />
     </>
   )
 }

@@ -7,6 +7,7 @@ function Movies({
   searchQuery,
   selectedGenre,
   onGenreChange,
+  onMovieClick,
 }) {
   return (
     <section className="movies" id="movies">
@@ -38,6 +39,7 @@ function Movies({
           <MovieCard
             key={movie.id}
             movie={movie}
+            onMovieClick={onMovieClick}
           />
         ))}
       </div>

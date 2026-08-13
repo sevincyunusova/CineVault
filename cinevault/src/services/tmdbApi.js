@@ -1,8 +1,7 @@
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY
-
 const BASE_URL = "https://api.themoviedb.org/3"
 
-export async function getPopularMovies() {
+export const getPopularMovies = async () => {
   const response = await fetch(
     `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
   )
@@ -16,13 +15,27 @@ export async function getPopularMovies() {
   return data.results
 }
 
-export async function searchMovies(query) {
+export const searchMovies = async (query) => {
   const response = await fetch(
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(query)}&page=1`
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(query)}`
   )
 
   if (!response.ok) {
     throw new Error("Failed to search movies")
+  }
+
+  const data = await response.json()
+
+  return data.results
+}
+
+export const getMoviesByGenre = async (genreId) => {
+  const response = await fetch(
+    `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=en-US&sort_by=popularity.desc`
+  )
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch movies by genre")
   }
 
   const data = await response.json()

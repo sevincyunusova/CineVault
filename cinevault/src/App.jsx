@@ -5,18 +5,15 @@ import Movies from "./components/Movies/Movies"
 import {
   getPopularMovies,
   searchMovies,
+  getMoviesByGenre,
 } from "./services/tmdbApi"
 
 function App() {
   const [movies, setMovies] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
+  const [selectedGenre, setSelectedGenre] = useState("all")
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
-  const [selectedGenre, setSelectedGenre] = useState("all")
-
-  const handleGenreChange = (genreId) => {
-    setSelectedGenre(genreId)
-  }
 
   useEffect(() => {
     getPopularMovies()
@@ -41,9 +38,37 @@ function App() {
 
       setMovies(results)
       setSearchQuery(query)
+      setSelectedGenre("all")
     } catch (error) {
       console.error(error)
       setError("Failed to search movies.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleGenreChange = async (genreId) => {
+    try {
+      setSelectedGenre(genreId)
+      setLoading(true)
+      setError("")
+
+      if (genreId === "all") {
+        const results = await getPopularMovies()
+
+        setMovies(results)
+        setSearchQuery("")
+
+        return
+      }
+
+      const results = await getMoviesByGenre(genreId)
+
+      setMovies(results)
+      setSearchQuery("")
+    } catch (error) {
+      console.error(error)
+      setError("Failed to load movies.")
     } finally {
       setLoading(false)
     }

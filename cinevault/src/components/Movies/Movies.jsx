@@ -38,24 +38,36 @@ function Movies({
         onGenreChange={onGenreChange}
       />
 
-      <div className="movies-grid">
-        {movies.map((movie) => {
-          const isFavorite = favorites.some(
-            (favorite) => favorite.id === movie.id
-          )
+      {movies.length === 0 ? (
+        <div className="empty-movies">
+          <h3>No movies found</h3>
 
-          return (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              onMovieClick={onMovieClick}
-              onAddFavorite={onAddFavorite}
-              onRemoveFavorite={onRemoveFavorite}
-              isFavorite={isFavorite}
-            />
-          )
-        })}
-      </div>
+          <p>
+            {searchQuery
+              ? `We couldn't find any movies matching "${searchQuery}".`
+              : "There are no movies available for this category."}
+          </p>
+        </div>
+      ) : (
+        <div className="movies-grid">
+          {movies.map((movie) => {
+            const isFavorite = favorites.some(
+              (favorite) => favorite.id === movie.id
+            )
+
+            return (
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+                onMovieClick={onMovieClick}
+                onAddFavorite={onAddFavorite}
+                onRemoveFavorite={onRemoveFavorite}
+                isFavorite={isFavorite}
+              />
+            )
+          })}
+        </div>
+      )}
     </section>
   )
 }

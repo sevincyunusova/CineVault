@@ -19,9 +19,13 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState(null)
 
   const [favorites, setFavorites] = useState(() => {
-    const savedFavorites = localStorage.getItem("cinevault-favorites")
+    const savedFavorites = localStorage.getItem(
+      "cinevault-favorites"
+    )
 
-    return savedFavorites ? JSON.parse(savedFavorites) : []
+    return savedFavorites
+      ? JSON.parse(savedFavorites)
+      : []
   })
 
   const [loading, setLoading] = useState(true)
@@ -143,15 +147,19 @@ function App() {
       <Hero onSearch={handleSearch} />
 
       {loading && (
-        <p className="loading-message">
-          Loading movies...
-        </p>
+        <div className="status-message">
+          <div className="loader"></div>
+
+          <p>Loading movies...</p>
+        </div>
       )}
 
-      {error && (
-        <p className="error-message">
-          {error}
-        </p>
+      {error && !loading && (
+        <div className="status-message error-state">
+          <h3>Something went wrong</h3>
+
+          <p>{error}</p>
+        </div>
       )}
 
       {!loading && !error && (

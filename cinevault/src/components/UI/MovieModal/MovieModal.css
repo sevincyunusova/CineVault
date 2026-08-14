@@ -129,11 +129,24 @@
 
   cursor: pointer;
 
-  transition: background-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .add-favorite-button:hover {
   background-color: #b20710;
+  transform: translateY(-1px);
+}
+
+.add-favorite-button.favorite-active {
+  background-color: #333333;
+  border: 1px solid #555555;
+}
+
+.add-favorite-button.favorite-active:hover {
+  background-color: #e50914;
+  border-color: #e50914;
 }
 
 @media (max-width: 700px) {

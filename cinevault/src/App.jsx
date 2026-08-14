@@ -155,17 +155,13 @@ function App() {
       )}
 
       {!loading && !error && (
-        <>
-        
-
-          <Movies
-            movies={movies}
-            searchQuery={searchQuery}
-            selectedGenre={selectedGenre}
-            onGenreChange={handleGenreChange}
-            onMovieClick={setSelectedMovie}
-          />
-        </>
+        <Movies
+          movies={movies}
+          searchQuery={searchQuery}
+          selectedGenre={selectedGenre}
+          onGenreChange={handleGenreChange}
+          onMovieClick={setSelectedMovie}
+        />
       )}
 
       <Favorites
@@ -176,8 +172,10 @@ function App() {
 
       <MovieModal
         movie={selectedMovie}
+        favorites={favorites}
         onClose={() => setSelectedMovie(null)}
         onAddFavorite={handleAddFavorite}
+        onRemoveFavorite={handleRemoveFavorite}
       />
     </>
   )

@@ -8,8 +8,10 @@ import "./MovieModal.css"
 
 function MovieModal({
   movie,
+  favorites,
   onClose,
   onAddFavorite,
+  onRemoveFavorite,
 }) {
   if (!movie) {
     return null
@@ -26,6 +28,18 @@ function MovieModal({
   const rating = movie.vote_average
     ? movie.vote_average.toFixed(1)
     : "N/A"
+
+  const isFavorite = favorites.some(
+    (favorite) => favorite.id === movie.id
+  )
+
+  const handleFavoriteClick = () => {
+    if (isFavorite) {
+      onRemoveFavorite(movie.id)
+    } else {
+      onAddFavorite(movie)
+    }
+  }
 
   return (
     <div
@@ -73,13 +87,16 @@ function MovieModal({
           </p>
 
           <button
-            className="add-favorite-button"
-            onClick={() =>
-              onAddFavorite(movie)
-            }
+            className={`add-favorite-button ${
+              isFavorite ? "favorite-active" : ""
+            }`}
+            onClick={handleFavoriteClick}
           >
             <FaHeart />
-            Add to Favorites
+
+            {isFavorite
+              ? "Remove from Favorites"
+              : "Add to Favorites"}
           </button>
         </div>
       </div>

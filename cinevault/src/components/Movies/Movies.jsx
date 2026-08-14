@@ -28,7 +28,16 @@ function Movies({
           </h2>
         </div>
 
-        <button className="view-all-button">
+        <button
+          className="view-all-button"
+          onClick={() => {
+            document
+              .getElementById("movies")
+              ?.scrollIntoView({
+                behavior: "smooth",
+              })
+          }}
+        >
           View All
         </button>
       </div>

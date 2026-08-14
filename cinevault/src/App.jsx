@@ -5,6 +5,7 @@ import Hero from "./components/Hero/Hero"
 import Movies from "./components/Movies/Movies"
 import Favorites from "./components/Favorites/Favorites"
 import MovieModal from "./components/UI/MovieModal/MovieModal"
+import Footer from "./components/Footer/Footer"
 
 import {
   getPopularMovies,
@@ -188,6 +189,8 @@ function App() {
         onAddFavorite={handleAddFavorite}
         onRemoveFavorite={handleRemoveFavorite}
       />
+      
+      <Footer />
     </>
   )
 }

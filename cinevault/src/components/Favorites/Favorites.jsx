@@ -1,4 +1,5 @@
 import MovieCard from "../MovieCard/MovieCard"
+
 import "./Favorites.css"
 
 function Favorites({
@@ -7,38 +8,39 @@ function Favorites({
   onRemoveFavorite,
 }) {
   return (
-    <section className="favorites" id="favorites">
+    <section
+      className="favorites"
+      id="favorites"
+    >
       <div className="favorites-header">
-        <span className="section-label">
-          YOUR COLLECTION
-        </span>
+        <div>
+          <span className="section-label">
+            YOUR COLLECTION
+          </span>
 
-        <h2>Favorite Movies</h2>
+          <h2>Favorite Movies</h2>
+        </div>
+
+        <span className="favorites-count">
+          {favorites.length} movies
+        </span>
       </div>
 
       {favorites.length === 0 ? (
-        <p className="favorites-empty">
-          You haven't added any movies to your favorites yet.
-        </p>
+        <div className="empty-favorites">
+          <p>
+            You haven't added any movies to your
+            favorites yet.
+          </p>
+        </div>
       ) : (
         <div className="movies-grid">
           {favorites.map((movie) => (
-            <div
-              className="favorite-card-wrapper"
+            <MovieCard
               key={movie.id}
-            >
-              <MovieCard
-                movie={movie}
-                onMovieClick={onMovieClick}
-              />
-
-              <button
-                className="remove-favorite"
-                onClick={() => onRemoveFavorite(movie.id)}
-              >
-                Remove from Favorites
-              </button>
-            </div>
+              movie={movie}
+              onMovieClick={onMovieClick}
+            />
           ))}
         </div>
       )}

@@ -138,7 +138,7 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar onSearch={handleSearch} />
 
       <Hero onSearch={handleSearch} />
 

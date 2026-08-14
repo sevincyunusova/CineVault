@@ -40,6 +40,9 @@ function Favorites({
               key={movie.id}
               movie={movie}
               onMovieClick={onMovieClick}
+              onAddFavorite={() => {}}
+              onRemoveFavorite={onRemoveFavorite}
+              isFavorite={true}
             />
           ))}
         </div>

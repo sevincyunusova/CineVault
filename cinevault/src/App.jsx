@@ -163,6 +163,7 @@ function App() {
           onMovieClick={setSelectedMovie}
           favorites={favorites}
           onAddFavorite={handleAddFavorite}
+          onRemoveFavorite={handleRemoveFavorite}
         />
       )}
 

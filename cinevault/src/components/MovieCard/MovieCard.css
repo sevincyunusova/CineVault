@@ -54,6 +54,7 @@
 
 .favorite-button:hover {
   background-color: #ff1a1a;
+  color: #ffffff;
   transform: scale(1.08);
 }
 

@@ -11,6 +11,7 @@ function Movies({
   onMovieClick,
   favorites,
   onAddFavorite,
+  onRemoveFavorite,
 }) {
   return (
     <section className="movies" id="movies">
@@ -49,6 +50,7 @@ function Movies({
               movie={movie}
               onMovieClick={onMovieClick}
               onAddFavorite={onAddFavorite}
+              onRemoveFavorite={onRemoveFavorite}
               isFavorite={isFavorite}
             />
           )

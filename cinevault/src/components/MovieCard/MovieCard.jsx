@@ -6,6 +6,7 @@ function MovieCard({
   movie,
   onMovieClick,
   onAddFavorite,
+  onRemoveFavorite,
   isFavorite,
 }) {
   const posterUrl = movie.poster_path
@@ -23,7 +24,9 @@ function MovieCard({
   const handleFavoriteClick = (event) => {
     event.stopPropagation()
 
-    if (!isFavorite) {
+    if (isFavorite) {
+      onRemoveFavorite(movie.id)
+    } else {
       onAddFavorite(movie)
     }
   }
@@ -47,7 +50,7 @@ function MovieCard({
           onClick={handleFavoriteClick}
           aria-label={
             isFavorite
-              ? "Already in favorites"
+              ? "Remove from favorites"
               : "Add to favorites"
           }
         >

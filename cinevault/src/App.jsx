@@ -161,6 +161,8 @@ function App() {
           selectedGenre={selectedGenre}
           onGenreChange={handleGenreChange}
           onMovieClick={setSelectedMovie}
+          favorites={favorites}
+          onAddFavorite={handleAddFavorite}
         />
       )}
 

@@ -1,4 +1,5 @@
 import "./Movies.css"
+
 import MovieCard from "../MovieCard/MovieCard"
 import Filters from "../Filters/Filters"
 
@@ -8,6 +9,8 @@ function Movies({
   selectedGenre,
   onGenreChange,
   onMovieClick,
+  favorites,
+  onAddFavorite,
 }) {
   return (
     <section className="movies" id="movies">
@@ -35,13 +38,21 @@ function Movies({
       />
 
       <div className="movies-grid">
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            onMovieClick={onMovieClick}
-          />
-        ))}
+        {movies.map((movie) => {
+          const isFavorite = favorites.some(
+            (favorite) => favorite.id === movie.id
+          )
+
+          return (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={onMovieClick}
+              onAddFavorite={onAddFavorite}
+              isFavorite={isFavorite}
+            />
+          )
+        })}
       </div>
     </section>
   )
